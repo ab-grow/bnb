@@ -76,7 +76,8 @@
   }
 
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html{overflow-x:hidden;width:100%;}
+  html,body{margin:0;padding:0;max-width:100%;}
   body{
     background:var(--bg);
     color:var(--text);
@@ -84,6 +85,7 @@
     font-size:15px;
     line-height:1.5;
     min-height:100vh;
+    overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
   ::selection{background:var(--pulp);color:#1a1005;}
@@ -92,7 +94,7 @@
   button{font-family:inherit;}
 
   /* ---------- Layout shell ---------- */
-  .shell{max-width:1180px;margin:0 auto;padding:0 20px 64px;}
+  .shell{max-width:1180px;width:100%;margin:0 auto;padding:0 20px 64px;}
   header.top{
     padding:28px 20px 22px;
     border-bottom:1px solid var(--border-soft);
@@ -288,7 +290,7 @@
   .stmt-period{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:18px;font-size:13px;color:var(--text-dim);}
   .stmt-panel{display:none;}
   .stmt-panel.active{display:block;}
-  .statement{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-lg);padding:26px 28px;}
+  .statement{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-lg);padding:26px 28px;max-width:100%;overflow-x:auto;}
   .statement-head{text-align:center;margin-bottom:22px;padding-bottom:16px;border-bottom:2px solid var(--border);}
   .statement-head h2{font-family:var(--font-display);font-size:21px;margin:0 0 4px;}
   .statement-head .sub{color:var(--text-dim);font-size:13px;}
@@ -319,6 +321,27 @@
   .empty-state p{font-size:13.5px;max-width:340px;margin:0 auto 18px;}
 
   footer.foot{text-align:center;color:var(--text-faint);font-size:12px;padding:30px 0 10px;}
+
+  /* ---------- Small screens: keep everything inside the viewport ---------- */
+  @media (max-width:480px){
+    .shell{padding:0 14px 48px;}
+    header.top{padding:20px 14px 18px;}
+    .brand h1{font-size:21px;}
+    .brand-mark{width:40px;height:40px;font-size:17px;}
+    .card{padding:16px;}
+    .statement{padding:18px 16px;}
+    .statement-head h2{font-size:18px;}
+    .modal{padding:18px;}
+    .toolbar{flex-direction:column;align-items:stretch;}
+    .filters{width:100%;}
+    .filters select,.filters input{flex:1;min-width:0;}
+    .stmt-actions{justify-content:flex-start;}
+    .stat .value{font-size:24px;word-break:break-word;}
+    .stat.hero .value{font-size:26px;}
+    .tx-mini .meta .note{max-width:150px;}
+  }
+
+  img,svg{max-width:100%;}
 
   @media print{
     header.top, nav.tabs, .stmt-nav, .stmt-period, .stmt-actions, .toolbar, footer.foot{display:none !important;}
